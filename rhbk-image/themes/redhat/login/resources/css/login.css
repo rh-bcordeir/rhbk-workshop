@@ -1,0 +1,884 @@
+/* =====================================================================
+   Red Hat — Keycloak Login Theme
+   CSS-only customisation targeting the default base/keycloak template
+   ===================================================================== */
+
+/* ----- Palette ----- */
+:root {
+    --rh-red: #ee0000;
+    --rh-red-dark: #a30000;
+    --rh-red-hover: #be0000;
+    --rh-black: #151515;
+    --rh-gray-900: #1f1f1f;
+    --rh-gray-700: #3c3f42;
+    --rh-gray-500: #6a6e73;
+    --rh-gray-300: #d2d2d2;
+    --rh-gray-100: #f5f5f5;
+    --rh-white: #ffffff;
+    --rh-link: #0066cc;
+    --rh-link-hover: #004080;
+    --rh-radius: 10px;
+    --rh-shadow: 0 8px 30px rgba(0, 0, 0, .1);
+    --rh-font: "Red Hat Text", "Segoe UI", system-ui, -apple-system, sans-serif;
+    --rh-font-display: "Red Hat Display", "Red Hat Text", "Segoe UI", system-ui, sans-serif;
+}
+
+/* ----- Page background ----- */
+.login-pf {
+    background: none;
+}
+
+.login-pf body {
+    margin: 0;
+    min-height: 100vh;
+    font-family: var(--rh-font);
+    -webkit-font-smoothing: antialiased;
+    color: var(--rh-black);
+    background:
+        radial-gradient(ellipse 90% 60% at 50% 0%, rgba(238, 0, 0, .06) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 80% 100%, rgba(238, 0, 0, .04) 0%, transparent 50%),
+        var(--rh-gray-100);
+}
+
+/* ----- Container ----- */
+.login-pf .container {
+    padding-top: 0;
+    padding-bottom: 0;
+    max-width: 1100px;
+}
+
+.login-pf-page {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    padding: 3rem 1rem 2rem;
+}
+
+/* ----- Header / Logo ----- */
+#kc-header {
+    color: var(--rh-black);
+    overflow: visible;
+    white-space: nowrap;
+    width: 100%;
+    max-width: 620px;
+    margin: 0 auto 1.5rem;
+}
+
+#kc-header-wrapper {
+    font-family: var(--rh-font-display);
+    font-size: 0;
+    text-transform: none;
+    letter-spacing: 0;
+    line-height: 1;
+    padding: 0;
+    white-space: normal;
+    text-align: center;
+}
+
+/* Replace realm-name text with the Red Hat logo */
+#kc-header-wrapper::before {
+    content: "";
+    display: block;
+    width: 220px;
+    height: 52px;
+    margin: 0 auto 1.2rem;
+    background: url("../img/redhat-logo.svg") center / contain no-repeat;
+}
+
+div.kc-logo-text {
+    background-image: none !important;
+    width: 0;
+    height: 0;
+    overflow: hidden;
+}
+
+div.kc-logo-text span {
+    display: none;
+}
+
+/* ----- Card ----- */
+.card-pf {
+    margin: 0 auto;
+    max-width: 620px;
+    background: var(--rh-white);
+    border: 0;
+    border-top: 4px solid var(--rh-red);
+    border-radius: var(--rh-radius);
+    box-shadow: var(--rh-shadow);
+    padding: 2.5rem 2.5rem 1.5rem;
+}
+
+/* ----- Page title ----- */
+h1#kc-page-title {
+    font-family: var(--rh-font-display);
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--rh-black);
+    margin-top: 0;
+    margin-bottom: .75rem;
+    letter-spacing: -.01em;
+}
+
+p.instruction {
+    margin: 0 0 1rem;
+    color: var(--rh-gray-700);
+    font-size: .9375rem;
+    line-height: 1.5;
+}
+
+/* ----- Form fields ----- */
+textarea.pf-c-form-control {
+    height: auto;
+}
+
+.pf-c-form-control,
+input.pf-c-form-control,
+select.pf-c-form-control,
+textarea.pf-c-form-control {
+    border: 1px solid #8a8d90;
+    border-radius: 6px;
+    padding: .55rem .75rem;
+    font-size: 1rem;
+    font-family: inherit;
+    background: var(--rh-white);
+    transition: border-color .15s, box-shadow .15s;
+    box-shadow: none;
+}
+
+.pf-c-form-control:focus,
+input.pf-c-form-control:focus,
+select.pf-c-form-control:focus,
+textarea.pf-c-form-control:focus {
+    border-color: var(--rh-red);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(238, 0, 0, .15);
+}
+
+.pf-c-form__label-text,
+label.pf-c-form__label {
+    font-size: .875rem;
+    font-weight: 600;
+    color: var(--rh-black);
+}
+
+.pf-c-form__helper-text.pf-m-error,
+.kc-feedback-text {
+    font-size: .8125rem;
+}
+
+.pf-c-button.pf-m-control {
+    border-color: #8a8d90;
+    border-radius: 0 6px 6px 0;
+}
+
+/* ----- Primary button ----- */
+.pf-c-button.pf-m-primary,
+.login-pf-page .btn-primary,
+input[type="submit"].pf-c-button.pf-m-primary {
+    background: var(--rh-red) !important;
+    border: 0 !important;
+    color: var(--rh-white) !important;
+    font-family: var(--rh-font-display);
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: .02em;
+    border-radius: 6px;
+    min-height: 2.75rem;
+    box-shadow: 0 4px 14px rgba(163, 0, 0, .25);
+    transition: background .15s, transform .12s, box-shadow .12s;
+    cursor: pointer;
+    margin-top: 0;
+}
+
+.pf-c-button.pf-m-primary:hover,
+.login-pf-page .btn-primary:hover {
+    background: var(--rh-red-hover) !important;
+    transform: translateY(-1px);
+    box-shadow: 0 8px 22px rgba(163, 0, 0, .3);
+}
+
+.pf-c-button.pf-m-primary:active,
+.login-pf-page .btn-primary:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(163, 0, 0, .2);
+}
+
+#kc-form-buttons {
+    margin-top: 1.25rem;
+}
+
+/* ----- Links ----- */
+.login-pf a,
+.card-pf a {
+    color: var(--rh-link);
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-pf a:hover,
+.card-pf a:hover {
+    color: var(--rh-link-hover);
+    text-decoration: underline;
+}
+
+/* ----- Alerts ----- */
+.pf-c-alert__title {
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.pf-c-alert.pf-m-danger,
+.alert-error {
+    background: #faeae8;
+    border-color: #f5c5be;
+}
+
+.pf-c-alert.pf-m-success,
+.alert-success {
+    background: #f3faf7;
+    border-color: #bde5ce;
+}
+
+.pf-c-alert.pf-m-warning,
+.alert-warning {
+    background: #fff8e5;
+    border-color: #f6e08b;
+}
+
+.pf-c-alert.pf-m-info,
+.alert-info {
+    background: #e7f1fa;
+    border-color: #b8d7eb;
+}
+
+.pf-c-alert {
+    border-radius: 8px;
+    border-width: 1px;
+    border-style: solid;
+}
+
+/* ----- Options / Remember me ----- */
+#kc-form-options span {
+    display: block;
+}
+
+#kc-form-options .checkbox {
+    margin-top: 0;
+    color: var(--rh-gray-500);
+    font-size: .875rem;
+}
+
+/* ----- Info / Registration bar ----- */
+#kc-info {
+    margin: 1.5rem -2.5rem -1.5rem;
+    border-radius: 0 0 var(--rh-radius) var(--rh-radius);
+    overflow: hidden;
+}
+
+#kc-info-wrapper {
+    font-size: .875rem;
+    padding: 1rem 2.5rem;
+    background-color: var(--rh-gray-100);
+    border-top: 1px solid var(--rh-gray-300);
+    color: var(--rh-gray-700);
+}
+
+.login-pf-page .login-pf-signup {
+    font-size: .9rem;
+    color: var(--rh-gray-500);
+}
+
+#kc-registration {
+    margin-bottom: 0;
+}
+
+/* ----- Content ----- */
+#kc-content {
+    width: 100%;
+}
+
+#kc-content-wrapper {
+    margin-top: .25rem;
+}
+
+#kc-content-wrapper .row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+#kc-form-wrapper {
+    margin-top: .5rem;
+}
+
+/* ----- Username (step-up) ----- */
+#kc-attempted-username {
+    font-size: 1.1rem;
+    font-family: inherit;
+    font-weight: 700;
+    padding-right: 10px;
+}
+
+#kc-username {
+    text-align: center;
+    margin-bottom: -10px;
+}
+
+/* ----- Locale dropdown ----- */
+#kc-locale ul {
+    background-color: var(--rh-white);
+    display: none;
+    top: 20px;
+    min-width: 120px;
+    padding: 0;
+    border: 1px solid var(--rh-gray-300);
+    border-radius: 8px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .12);
+}
+
+#kc-locale-dropdown {
+    display: inline-block;
+}
+
+#kc-locale-dropdown:hover ul {
+    display: block;
+}
+
+#kc-locale-dropdown a {
+    color: var(--rh-black);
+    text-align: right;
+    font-size: .875rem;
+    display: block;
+    padding: .4rem .7rem;
+}
+
+#kc-locale-dropdown a:hover {
+    background: var(--rh-gray-100);
+    text-decoration: none;
+}
+
+#kc-locale-dropdown button {
+    background: rgba(0, 0, 0, .05);
+    border: 1px solid var(--rh-gray-300);
+    border-radius: 999px;
+    padding: .3rem .75rem;
+    cursor: pointer;
+    color: var(--rh-gray-700);
+    font-size: .8125rem;
+    font-weight: 600;
+}
+
+#kc-locale-dropdown button:hover {
+    background: rgba(0, 0, 0, .08);
+}
+
+button#kc-current-locale-link::after {
+    content: "\2c5";
+    margin-left: .25rem;
+}
+
+/* ----- Login brand image ----- */
+.login-pf-page .login-pf-brand {
+    margin-top: 20px;
+    max-width: 360px;
+    width: 40%;
+}
+
+/* ----- Terms ----- */
+#kc-terms-text {
+    margin-bottom: 20px;
+}
+
+#kc-registration-terms-text {
+    max-height: 100px;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 5px;
+}
+
+/* ----- Required field marker ----- */
+.required {
+    color: var(--rh-red);
+}
+
+.subtitle {
+    text-align: right;
+    margin-top: 30px;
+    color: var(--rh-gray-500);
+}
+
+/* ----- TOTP ----- */
+ol#kc-totp-settings {
+    margin: 0;
+    padding-left: 20px;
+}
+
+ul#kc-totp-supported-apps {
+    margin-bottom: 10px;
+}
+
+#kc-totp-secret-qr-code {
+    max-width: 150px;
+    max-height: 150px;
+}
+
+#kc-totp-secret-key {
+    background-color: var(--rh-white);
+    color: var(--rh-black);
+    font-size: 16px;
+    padding: 10px 0;
+}
+
+/* ----- OAuth ----- */
+#kc-oauth h3 {
+    margin-top: 0;
+}
+
+#kc-oauth ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+#kc-oauth ul li {
+    border-top: 1px solid rgba(255, 255, 255, .1);
+    font-size: 12px;
+    padding: 10px 0;
+}
+
+#kc-oauth ul li:first-of-type {
+    border-top: 0;
+}
+
+#kc-oauth .kc-role {
+    display: inline-block;
+    width: 50%;
+}
+
+/* ----- Code ----- */
+#kc-code textarea {
+    width: 100%;
+    height: 8em;
+}
+
+/* ----- Social / IdP ----- */
+.kc-social-links {
+    margin-top: 1.25rem;
+}
+
+.kc-social-links li {
+    width: 100%;
+}
+
+.kc-social-provider-logo {
+    font-size: 23px;
+    width: 30px;
+    height: 25px;
+    float: left;
+    opacity: .8;
+}
+
+.kc-social-gray {
+    color: var(--rh-gray-500);
+}
+
+.kc-social-gray h2 {
+    font-size: .75rem;
+    font-weight: 700;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    color: var(--rh-gray-500);
+}
+
+.kc-social-item {
+    margin-bottom: .5rem;
+    font-size: 15px;
+    text-align: center;
+}
+
+.kc-social-item .pf-c-button {
+    border-radius: 8px !important;
+    border: 1px solid var(--rh-gray-300) !important;
+    background: #fafafa !important;
+    color: var(--rh-black) !important;
+    font-weight: 600 !important;
+}
+
+.kc-social-item .pf-c-button:hover {
+    background: #f0f0f0 !important;
+    border-color: #c0c0c0 !important;
+}
+
+.kc-social-provider-name {
+    position: relative;
+}
+
+.kc-social-icon-text {
+    left: -15px;
+}
+
+.kc-social-grid {
+    display: grid;
+    grid-column-gap: 10px;
+    grid-row-gap: 5px;
+    grid-column-end: span 6;
+    --pf-l-grid__item--GridColumnEnd: span 6;
+}
+
+.kc-social-grid .kc-social-icon-text {
+    left: -10px;
+}
+
+.kc-social-section {
+    text-align: center;
+}
+
+.kc-social-section hr {
+    border: 0;
+    border-top: 1px solid var(--rh-gray-300);
+    margin: 1.1rem 0 .75rem;
+}
+
+/* ----- Tooltip ----- */
+.kc-login-tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.kc-login-tooltip .kc-tooltip-text {
+    top: -3px;
+    left: 160%;
+    background-color: var(--rh-black);
+    visibility: hidden;
+    color: #fff;
+    min-width: 130px;
+    text-align: center;
+    border-radius: 6px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, .45);
+    padding: 6px 8px;
+    position: absolute;
+    opacity: 0;
+    transition: opacity .25s;
+    font-size: .8125rem;
+}
+
+.kc-login-tooltip:hover .kc-tooltip-text {
+    visibility: visible;
+    opacity: .92;
+}
+
+.kc-login-tooltip .kc-tooltip-text::after {
+    content: " ";
+    position: absolute;
+    top: 15px;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--rh-black) transparent transparent;
+}
+
+/* ----- WebAuthn ----- */
+#kc-webauthn-settings-form {
+    padding-top: 8px;
+}
+
+#kc-form-webauthn .select-auth-box-parent {
+    pointer-events: none;
+}
+
+#kc-form-webauthn .select-auth-box-desc {
+    color: var(--rh-gray-500);
+}
+
+#kc-form-webauthn .select-auth-box-headline {
+    color: var(--rh-gray-700);
+}
+
+#kc-form-webauthn .select-auth-box-icon {
+    flex: 0 0 3em;
+}
+
+#kc-form-webauthn .select-auth-box-icon-properties {
+    margin-top: 10px;
+    font-size: 1.8em;
+}
+
+#kc-form-webauthn .select-auth-box-icon-properties.unknown-transport-class {
+    margin-top: 3px;
+}
+
+#kc-form-webauthn .pf-l-stack__item {
+    margin: -1px 0;
+}
+
+/* ----- Select authenticator ----- */
+.select-auth-box-arrow {
+    display: flex;
+    align-items: center;
+    margin-right: 2rem;
+}
+
+.select-auth-box-icon {
+    display: flex;
+    flex: 0 0 2em;
+    justify-content: center;
+    margin-right: 1rem;
+    margin-left: 1.5rem;
+}
+
+.select-auth-box-parent {
+    border-top: 1px solid var(--rh-gray-300);
+    padding: .85rem .5rem;
+    cursor: pointer;
+    text-align: left;
+    align-items: unset;
+    background-color: unset;
+    border-right: unset;
+    border-bottom: unset;
+    border-left: unset;
+    border-radius: 6px;
+    margin-bottom: .35rem;
+}
+
+.select-auth-box-parent:hover {
+    background-color: var(--rh-gray-100);
+}
+
+.select-auth-container {
+    padding-bottom: 0 !important;
+}
+
+.select-auth-box-headline {
+    font-size: 1rem;
+    color: var(--rh-black);
+    font-weight: 700;
+}
+
+.select-auth-box-desc {
+    font-size: .875rem;
+    color: var(--rh-gray-500);
+}
+
+.select-auth-box-paragraph {
+    text-align: center;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+/* ----- Misc ----- */
+.card-pf form.form-actions .btn {
+    float: right;
+    margin-left: 10px;
+}
+
+.login-pf-page.login-pf-page-accounts {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-pf-page .list-view-pf .list-group-item {
+    border-bottom: 1px solid #ededed;
+}
+
+.login-pf-page .list-view-pf-description {
+    width: 100%;
+}
+
+#kc-form-login div.form-group:last-of-type,
+#kc-register-form div.form-group:last-of-type,
+#kc-update-profile-form div.form-group:last-of-type,
+#kc-update-email-form div.form-group:last-of-type {
+    margin-bottom: 0;
+}
+
+.no-bottom-margin {
+    margin-bottom: 0;
+}
+
+#kc-back {
+    margin-top: 5px;
+}
+
+/* ----- Recovery codes ----- */
+.kc-recovery-codes-warning {
+    margin-bottom: 32px;
+}
+
+.kc-recovery-codes-warning .pf-c-alert__description p {
+    font-size: .875rem;
+}
+
+.kc-recovery-codes-list {
+    list-style: none;
+    columns: 2;
+    margin: 16px 0;
+    padding: 16px 16px 8px 16px;
+    border: 1px solid var(--rh-gray-300);
+    border-radius: 8px;
+}
+
+.kc-recovery-codes-list li {
+    margin-bottom: 8px;
+    font-size: 11px;
+}
+
+.kc-recovery-codes-list li span {
+    color: var(--rh-gray-500);
+    width: 16px;
+    text-align: right;
+    display: inline-block;
+    margin-right: 1px;
+}
+
+.kc-recovery-codes-actions {
+    margin-bottom: 24px;
+}
+
+.kc-recovery-codes-actions button {
+    padding-left: 0;
+}
+
+.kc-recovery-codes-actions button i {
+    margin-right: 8px;
+}
+
+.kc-recovery-codes-confirmation {
+    align-items: baseline;
+    margin-bottom: 16px;
+}
+
+#certificate_subjectDN {
+    overflow-wrap: break-word;
+}
+
+/* ==============================
+   Responsive
+   ============================== */
+
+/* Desktop */
+@media (min-width: 768px) {
+    #kc-container-wrapper {
+        position: absolute;
+        width: 100%;
+    }
+
+    .login-pf .container {
+        padding-right: 80px;
+    }
+
+    #kc-locale {
+        position: relative;
+        text-align: right;
+        z-index: 9999;
+    }
+}
+
+/* Tablet / Phone */
+@media (max-width: 767px) {
+    .login-pf body {
+        background:
+            radial-gradient(ellipse at 50% 0%, rgba(238, 0, 0, .05) 0%, transparent 60%),
+            var(--rh-gray-100);
+    }
+
+    .login-pf-page {
+        padding: 1.75rem .75rem 2rem;
+    }
+
+    #kc-header {
+        padding-left: 15px;
+        padding-right: 15px;
+        float: none;
+        text-align: center;
+    }
+
+    #kc-header-wrapper {
+        font-size: 0;
+        padding: 0 0 .5rem;
+        color: var(--rh-black);
+        letter-spacing: 0;
+    }
+
+    #kc-header-wrapper::before {
+        width: 170px;
+        height: 40px;
+        margin-bottom: .75rem;
+    }
+
+    div.kc-logo-text {
+        margin: 0;
+        width: 0;
+        height: 0;
+    }
+
+    .card-pf {
+        max-width: none;
+        border-radius: var(--rh-radius);
+        padding: 1.5rem 1.25rem 1rem;
+    }
+
+    .login-pf-page .card-pf {
+        margin-left: 0;
+        margin-right: 0;
+    }
+
+    #kc-form {
+        float: none;
+    }
+
+    #kc-info {
+        margin-left: -1.25rem;
+        margin-right: -1.25rem;
+        margin-bottom: -1rem;
+    }
+
+    #kc-info-wrapper {
+        border-top: 1px solid var(--rh-gray-300);
+        background-color: var(--rh-gray-100);
+    }
+
+    .login-pf .container {
+        padding-top: 0;
+        padding-bottom: 0;
+    }
+
+    #kc-locale {
+        position: absolute;
+        width: 200px;
+        top: 20px;
+        right: 20px;
+        text-align: right;
+        z-index: 9999;
+    }
+
+    .kc-social-grid {
+        grid-column-end: 12;
+        --pf-l-grid__item--GridColumnEnd: span 12;
+    }
+
+    .kc-social-grid .kc-social-icon-text {
+        left: -15px;
+    }
+}
+
+@media (min-height: 646px) {
+    #kc-container-wrapper {
+        bottom: 12%;
+    }
+}
+
+@media (max-height: 645px) {
+    #kc-container-wrapper {
+        padding-top: 50px;
+        top: 20%;
+    }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .pf-c-button.pf-m-primary,
+    .login-pf-page .btn-primary {
+        transition: none;
+    }
+}

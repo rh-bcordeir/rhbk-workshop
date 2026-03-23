@@ -1,0 +1,26 @@
+  apiVersion: k8s.keycloak.org/v2alpha1
+  kind: Keycloak
+  metadata:
+    name: keycloak
+    namespace: rhbk
+  spec:
+    instances: 1
+    # image: quay.io/rh-ee-bcordeir/keycloak:26
+    db:
+      vendor: postgres
+      host: postgres-db
+      usernameSecret:
+        name: keycloak-db-secret
+        key: username
+      passwordSecret:
+        name: keycloak-db-secret
+        key: password
+    http:
+      httpsPort: 8443
+      tlsSecret: tls-secret
+    ingress:
+      enabled: false
+    hostname:
+      hostname: rhbk.apps.bruno-cluster.sandbox2971.opentlc.com
+    # proxy:
+    #   headers: xforwarded

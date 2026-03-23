@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <rect width="1920" height="1080" fill="#151515"/>
+  <g opacity=".6">
+    <path d="M-200 700 L600 200 L1100 500 L300 1000Z" fill="#1a1a1a"/>
+    <path d="M500 400 L1400 -50 L1920 350 L1000 800Z" fill="#1f1f1f"/>
+    <path d="M900 750 L1700 300 L2100 600 L1300 1100Z" fill="#222"/>
+  </g>
+  <g opacity=".4">
+    <path d="M-100 900 L700 500 L1050 750 L200 1150Z" fill="#2a0000"/>
+    <path d="M700 150 L1500 -200 L1920 200 L1100 550Z" fill="#300000"/>
+  </g>
+  <circle cx="1500" cy="200" r="320" fill="#4a0000" opacity=".35"/>
+  <circle cx="1520" cy="220" r="220" fill="#700000" opacity=".3"/>
+  <circle cx="1540" cy="240" r="120" fill="#a00000" opacity=".22"/>
+</svg>
