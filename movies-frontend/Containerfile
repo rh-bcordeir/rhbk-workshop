@@ -1,0 +1,14 @@
+FROM registry.access.redhat.com/ubi9/nodejs-20:latest
+
+WORKDIR /opt/app-root/src
+
+COPY package*.json ./
+RUN npm ci
+
+COPY . .
+
+RUN npm run build
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
