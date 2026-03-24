@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: minha-app
+  namespace: workshop
+spec:
+  template:
+    spec:
+        volumes:
+          - name: service-ca
+            configMap:
+              name: service-ca-bundle
+      containers:
+        - name: minha-app
+          volumeMounts:
+            - name: service-ca
+              mountPath: /deployments/certs
+              readOnly: true
+            # para o frontend nextjs
+            # - name: service-ca
+            #   mountPath: /etc/pki/service-ca
+            #   readOnly: true

@@ -23,7 +23,11 @@ public class MoviesResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Authenticated
     public Response getMovies() {
-        return Response.ok(moviesService.getMovies()).build();
+        try {
+            return Response.ok(moviesService.getMovies()).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
     }
 
     @POST
@@ -31,6 +35,10 @@ public class MoviesResource {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("admin")
     public Response createMovie(MovieDTO movie) {
-        return Response.status(Response.Status.CREATED).entity(moviesService.addMovie(movie)).build();
+        try {
+            return Response.status(Response.Status.CREATED).entity(moviesService.addMovie(movie)).build();
+        } catch (Exception e) {
+            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
+        }
     }
 }

@@ -37,7 +37,6 @@ export async function POST(request: NextRequest) {
   }
 
   const body = await request.json();
-  console.log("\n", session.accessToken);
 
   const res = await fetch(`${MS_MOVIES_URL}/movies`, {
     method: "POST",
