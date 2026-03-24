@@ -1,6 +1,7 @@
 package br.com.redhat.bcordeir.resources;
 
 import br.com.redhat.bcordeir.services.MoviesService;
+import io.quarkus.logging.Log;
 import io.quarkus.security.Authenticated;
 import jakarta.annotation.security.RolesAllowed;
 import jakarta.inject.Inject;
@@ -23,11 +24,8 @@ public class MoviesResource {
     @Produces(MediaType.APPLICATION_JSON)
     @Authenticated
     public Response getMovies() {
-        try {
-            return Response.ok(moviesService.getMovies()).build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+        Log.info("Getting movies");
+        return Response.ok(moviesService.getMovies()).build();
     }
 
     @POST
@@ -35,10 +33,7 @@ public class MoviesResource {
     @Produces(MediaType.APPLICATION_JSON)
     @RolesAllowed("admin")
     public Response createMovie(MovieDTO movie) {
-        try {
-            return Response.status(Response.Status.CREATED).entity(moviesService.addMovie(movie)).build();
-        } catch (Exception e) {
-            return Response.status(Response.Status.INTERNAL_SERVER_ERROR).entity(e.getMessage()).build();
-        }
+        Log.info("Creating movie: " + movie);
+        return Response.status(Response.Status.CREATED).entity(moviesService.addMovie(movie)).build();
     }
 }
