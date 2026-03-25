@@ -27,7 +27,8 @@ rhbk-workshop/
 ├── infra/                  # OpenShift / Kubernetes manifests
 │   ├── 1-postgres.yaml     #   PostgreSQL 15 StatefulSet + Secret
 │   ├── 2-keycloak-svc-route.yaml  #   Service + Route for Keycloak
-│   └── 3-keycloak.yaml     #   Keycloak CR (Operator-managed)
+│   ├── 3-keycloak.yaml     #   Keycloak CR (Operator-managed)
+│   └── external-secrets-manager/  # Reference YAML for External Secrets Operator (see folder README)
 ├── ms-movies/              # Quarkus REST API (Java 21)
 ├── movies-frontend/        # Next.js 16 frontend (TypeScript, Tailwind CSS)
 ├── rhbk-image/             # Custom Keycloak container image + login theme
@@ -122,6 +123,8 @@ This creates:
 1. A PostgreSQL 15 database for Keycloak
 2. A Service and Route exposing Keycloak with TLS reencrypt
 3. A Keycloak instance managed by the Keycloak Operator
+
+The `infra/external-secrets-manager/` directory holds **reference manifests** for the **Red Hat External Secrets Operator** on OpenShift (for example, syncing secrets from AWS Secrets Manager into the cluster). It is optional for the core Keycloak flow; see [infra/external-secrets-manager/README.md](infra/external-secrets-manager/README.md) for the architecture diagram and file order.
 
 ## Keycloak Configuration
 
